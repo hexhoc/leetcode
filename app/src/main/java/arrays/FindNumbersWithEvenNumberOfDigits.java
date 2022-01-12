@@ -1,4 +1,4 @@
-package arrays.chapter1;
+package arrays;
 
 public class FindNumbersWithEvenNumberOfDigits {
     
