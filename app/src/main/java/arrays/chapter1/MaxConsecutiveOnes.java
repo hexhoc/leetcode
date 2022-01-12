@@ -8,19 +8,21 @@ public class MaxConsecutiveOnes {
 
     public int findMaxConsecutiveOnes(int[] nums) {
         
-        // n(O)
-        int max = 0;
-        int length = 0;
+        // O(n)
+        int max = 0, length = 0;
 
-        for (int i : nums) {
-            if (i == 0) {
-                max = (length > max) ? length : max;
-                length = 0;
-                continue;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                length++;
             }
-            length++;
+
+            if (nums[i] == 0 || i == (nums.length-1)) {
+                //reset
+                max = max < length ? length : max;
+                length = 0;
+            }
         }
-        
+     
         return max;
     }
 }
