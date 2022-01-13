@@ -1,9 +1,5 @@
 package arrays;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-
 public class RemoveElement {
     public static void main(String[] args) {
         int[] arr1 = new int[]{0,1,2,2,3,0,4,2};
