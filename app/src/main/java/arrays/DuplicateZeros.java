@@ -5,7 +5,6 @@ public class DuplicateZeros {
         DuplicateZeros task = new DuplicateZeros();
         int[] arr = new int[]{1,0,2,3,0,4,5,0};
         task.execute(arr);
-        int a = 0;
     }
 
     public void execute(int[] arr) {
