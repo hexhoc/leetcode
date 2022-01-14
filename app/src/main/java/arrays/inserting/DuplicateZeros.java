@@ -1,4 +1,4 @@
-package arrays;
+package arrays.inserting;
 
 public class DuplicateZeros {
     public static void main(String[] args) {

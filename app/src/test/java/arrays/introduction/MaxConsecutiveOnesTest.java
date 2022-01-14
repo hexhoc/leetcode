@@ -1,4 +1,4 @@
-package arrays;
+package arrays.introduction;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -1,4 +1,4 @@
-package arrays;
+package arrays.deleting;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 

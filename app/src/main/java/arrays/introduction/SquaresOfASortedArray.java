@@ -1,4 +1,4 @@
-package arrays;
+package arrays.introduction;
 
 public class SquaresOfASortedArray {
     public static void main(String[] args) {

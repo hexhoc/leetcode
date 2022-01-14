@@ -1,4 +1,4 @@
-package arrays;
+package arrays.inserting;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
