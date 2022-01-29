@@ -3,10 +3,10 @@ package arrays.deleting;
 public class RemoveElement {
     public static void main(String[] args) {
         int[] arr1 = new int[]{0,1,2,2,3,0,4,2};
-        int k1 = RemoveElement.execute(arr1, 2);
+        RemoveElement.execute(arr1, 2);
 
         int[] arr2 = new int[]{3,2,2,3};
-        int k2 = RemoveElement.execute(arr2, 3);
+        RemoveElement.execute(arr2, 3);
     }
 
     public static int execute(int[] nums, int val) {

@@ -1,7 +1,5 @@
 package arrays.searching;
 
-import java.util.LinkedList;
-
 public class moveZeroes {
     public static void main(String[] args) {
 
@@ -10,19 +8,6 @@ public class moveZeroes {
     }
 
     public static void execute(int[] nums) {
-
-        // for (int i = 0; i < nums.length; i++) {
-        //     if (nums[i] == 0) {
-        //         for (int j = i; j < nums.length; j++) {
-        //             if (nums[j] != 0) {
-        //                 int temp = nums[j];
-        //                 nums[j] = nums[i];
-        //                 nums[i] = temp;
-        //                 break;
-        //             }
-        //         }
-        //     }
-        // }
 
         int[] newNums = new int[nums.length];
         int k = 0;
