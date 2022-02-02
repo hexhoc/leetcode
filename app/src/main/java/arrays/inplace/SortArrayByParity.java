@@ -1,9 +1,6 @@
 package arrays.inplace;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.stream.Collectors;
 
 // Given an integer array nums, move all the even integers at the beginning of the array followed by all the odd integers.
 // Return any array that satisfies this condition.
