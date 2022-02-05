@@ -4,8 +4,25 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
 import com.google.common.base.Functions;
+
+/*
+Дан массив чисел array_start.
+Вы можете менять местами элементы массива.
+Ваша задача: получить array_goal.
+Необходимо определить минимально возможное количество перемещений элементов массива,
+которое требуется, чтобы получить нужный порядок в массиве.
+Ввод:
+* array_start - начальный массив, 1<length(array_start)<10
+* array_goal - конечный массив, length(array_start)=length(array_goal)
+Вывод:
+* Integer
+Пример:
+array_start = [3, 2, 1, 4]
+array_goal = [1, 2, 3, 4]
+get_result(array_start, array_goal) = 1
+Меняем 3 и 1 местами и получаем нужную последовательность в массиве.
+*/
 
 public class ArrayChangeStep {
     public static void main(String[] args) {
