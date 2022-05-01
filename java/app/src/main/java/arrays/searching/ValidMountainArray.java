@@ -1,5 +1,24 @@
 package arrays.searching;
 
+/*
+Given an array of integers arr, return true if and only if it is a valid mountain array.
+
+Example 1:
+
+Input: arr = [2,1]
+Output: false
+
+Example 2:
+
+Input: arr = [3,5,5]
+Output: false
+
+Example 3:
+
+Input: arr = [0,3,2,1]
+Output: true
+*/
+
 public class ValidMountainArray {
     public static void main(String[] args) {
         // ValidMountainArray.execute(new int[] { 2,1 });
@@ -8,26 +27,25 @@ public class ValidMountainArray {
     }
 
     public static boolean execute(int[] nums) {
+        int rise = 0;
+        int decent = 0;
 
-        int pathLength = nums.length;
-        int i = 0;
-
-        // step up
-        while (i < pathLength-1 && nums[i] < nums[i+1]) {
-            i++;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i - 1] < nums[i]) {
+                rise++;
+            } else {
+                break;
+            }
         }
 
-        //peek cannot be first or last
-        if(i == 0 || i == pathLength-1) {
-            return false;
+        for (int i = rise+1; i < nums.length; i++) {
+            if (nums[i-1] > nums[i]) {
+                decent++;
+            } else {
+                break;
+            }
         }
 
-        //step down
-        while (i < pathLength-1 && nums[i] > nums[i+1]) {
-            i++;
-        }
-
-        return i == pathLength-1;
-
+        return nums.length == (rise+decent+1) && rise > 0 && decent > 0;
     }
 }

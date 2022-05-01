@@ -8,6 +8,6 @@ public class SortArrayByParityTest {
     
     @Test
     public void check() {
-       assertArrayEquals(new int[]{2,4,3,1}, SortArrayByParity.execute(new int[]{3,1,2,4}));
+       assertArrayEquals(new int[]{2,4,3,1}, SortArrayByParity.executeBubbleSort(new int[]{3,1,2,4}));
     }
 }

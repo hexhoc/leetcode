@@ -9,20 +9,14 @@ public class RemoveDuplicatesInNonSortedArray {
     }
     
     public static void execute(int[] nums) {
-
         for (int i = 0; i < nums.length; i++) {
-
-            boolean isDublicate = false;
-
             for (int j = i+1; j < nums.length; j++) {
                 if (nums[i] == nums[j]) {
-                    nums[j] = 0;
-                    isDublicate = true;
+                    for (int x = j+1; x < nums.length; x++) {
+                        nums[x-1] = nums[x];
+                    }
+                    nums[nums.length-1] = 0;
                 }
-            }
-
-            if (isDublicate) {
-                nums[i] = 0;
             }
         }
     }

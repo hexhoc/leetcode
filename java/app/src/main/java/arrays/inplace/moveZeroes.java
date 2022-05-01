@@ -1,4 +1,4 @@
-package arrays.searching;
+package arrays.inplace;
 
 public class moveZeroes {
     public static void main(String[] args) {

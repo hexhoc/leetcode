@@ -1,12 +1,14 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-	"hexhoc/leetcode/pkg/arrays"
+	"os"
 )
 
 func main() {
-	var result1 int = arrays.FindMaxConsecutiveOnes([]int{1, 1, 0, 1, 1, 1})
-	var result2 int = arrays.FindMaxConsecutiveOnes([]int{1, 0, 1, 1, 0, 1})
-	fmt.Println(result1, result2)
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	text := scanner.Text()
+	fmt.Println(text)
 }

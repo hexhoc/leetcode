@@ -13,7 +13,7 @@ public class RemoveElementTest {
         int[] arr = new int[]{0,1,2,2,3,0,4,2};
         int k = RemoveElement.execute(arr, 2);
 
-        assertArrayEquals(new int[]{4,3,1,0,0,0,0,0}, arr);
+        assertArrayEquals(new int[]{0,1,3,0,4,0,0,0}, arr);
         assertEquals(5, k);
     }
 }

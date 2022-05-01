@@ -10,7 +10,7 @@ public class RemoveDuplicatesInNonSortedArrayTest {
     void check() {
         int nums[] = new int[] {3,4,3,4,5,1,2,3,4,5};
         RemoveDuplicatesInNonSortedArray.execute(nums);
-        assertArrayEquals(new int[]{0,0,0,0,0,1,2,0,0,0}, nums);
+        assertArrayEquals(new int[]{3,4,5,1,2,0,0,0,0,0}, nums);
 
     }
 }
