@@ -1,7 +1,6 @@
 package arrays.conclusion;
 
-import java.util.Comparator;
-import java.util.HashSet;
+import java.util.TreeSet;
 
 public class MaxConsecutiveOnes2 {
     public static void main(String[] args) {
@@ -10,28 +9,25 @@ public class MaxConsecutiveOnes2 {
     }
 
     public static int execute(int[] nums) {
-        int maxConsecutive = 1;
-        int maxFlip = 1;
-        HashSet<Integer> setOfMax = new HashSet<>();
+        TreeSet<Integer> maxConsecutive = new TreeSet<>();
 
         for (int i = 0; i < nums.length; i++) {
-            int current = nums[i];
-            if (current == 1) {
-                maxConsecutive++;
-            } else {
-                if (maxFlip > 0) {
-                    current = 1;
+            int sum = 0;
+            int maxFlip = 1;
+
+            for (int j = i; j < nums.length; j++) {
+                if (nums[j] == 0) {
+                    if (maxFlip == 0) {
+                        break;
+                    }
                     maxFlip--;
                 }
+                sum++;
             }
-
-            if (i == nums.length-1 || (current == 0 && maxFlip == 0)) {
-                setOfMax.add(maxConsecutive);
-                maxFlip = 1;
-            }
+            maxConsecutive.add(sum);
         }
 
-        return setOfMax.stream().max(Comparator.naturalOrder()).get();
+        return maxConsecutive.last();
     }
 
 }
