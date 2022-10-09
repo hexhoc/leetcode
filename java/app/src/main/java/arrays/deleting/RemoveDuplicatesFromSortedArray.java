@@ -31,6 +31,8 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 
 */
 
+import java.util.Arrays;
+
 public class RemoveDuplicatesFromSortedArray {
     public static void main(String[] args) {
         int[] arr1 = new int[]{0,0,1,1,1,2,2,3,3,4};
@@ -41,25 +43,37 @@ public class RemoveDuplicatesFromSortedArray {
 
         int[] arr3 = new int[]{1};
         RemoveDuplicatesFromSortedArray.execute(arr3);
+
+        int[] arr4 = new int[]{0,1,2,2,3,3,4,4,4};
+        RemoveDuplicatesFromSortedArray.execute(arr4);
+
     }
 
     public static int execute(int[] nums) {
-        int total = 0;
+//        executeUsingStream(nums);
 
-        for (int i = 1, j = 1; i < nums.length; i++) {
-            if (nums[i-1] == nums[i]) {
-                continue;
-            } else {
-                nums[j] = nums[i];
-                j++;
-                total++;
+        Integer prevNum = null;
+        int k = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (prevNum == null || nums[i] != prevNum) {
+                nums[k] = nums[i];
+                k++;
             }
+            prevNum = nums[i];
         }
 
-        for (int i = total+1; i < nums.length; i++) {
+        for (int i = k; i < nums.length; i++) {
             nums[i] = 0;
         }
 
-        return total;
+        return k;
+    }
+
+    public static int executeUsingStream(int[] nums) {
+        var numsDistinct = Arrays.stream(nums).boxed().distinct().toList();
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = i >= numsDistinct.size() ? 0 : numsDistinct.get(i);
+        }
+        return numsDistinct.size();
     }
 }

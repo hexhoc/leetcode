@@ -12,6 +12,8 @@ Output: [1,0,0,2,3,0,0,4]
 Explanation: After calling your function, the input array is modified to: [1,0,0,2,3,0,0,4]
 */
 
+import java.util.Arrays;
+
 public class DuplicateZeros {
     public static void main(String[] args) {
         DuplicateZeros task = new DuplicateZeros();
@@ -20,22 +22,17 @@ public class DuplicateZeros {
     }
 
     public void execute(int[] arr) {
-
         int[] newArr = new int[arr.length];
-
-        for (int i = 0, j = 0; j < arr.length; i++, j++) {
-            newArr[j] = arr[i];
-
+        for (int i = 0, k = 0; k < arr.length; i++, k++) {
             if (arr[i] == 0) {
-                j++;
-                if (j != arr.length) {
-                    newArr[j] = arr[i];
-                }
+                k++;
             }
+            newArr[k] = arr[i];
         }
 
         for (int i = 0; i < newArr.length; i++) {
             arr[i] = newArr[i];
         }
     }
+
 }
