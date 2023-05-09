@@ -9,15 +9,17 @@ public class RemoveDuplicatesInNonSortedArray {
     }
     
     public static void execute(int[] nums) {
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i+1; j < nums.length; j++) {
-                if (nums[i] == nums[j]) {
-                    for (int x = j+1; x < nums.length; x++) {
-                        nums[x-1] = nums[x];
-                    }
-                    nums[nums.length-1] = 0;
-                }
+        int i = 0;
+        Set<Integer> alreadyProcessed = new HashSet<>();
+        for (int j = 0; j < nums.length; j++) {
+            if (!alreadyProcessed.contains(nums[j])) {
+                nums[i] = nums[j];
+                i++;
             }
+        }
+
+        for (int j = i; j < nums.length; j++) {
+            nums[j] = 0;
         }
     }
 }

@@ -50,23 +50,19 @@ public class RemoveDuplicatesFromSortedArray {
     }
 
     public static int execute(int[] nums) {
-//        executeUsingStream(nums);
-
-        Integer prevNum = null;
-        int k = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (prevNum == null || nums[i] != prevNum) {
-                nums[k] = nums[i];
-                k++;
+        int i = 0;
+        for (int j = 0; j < nums.length; j++) {
+            if (nums[i]!=nums[j]) {
+                i++;
+                nums[i] = nums[j];
             }
-            prevNum = nums[i];
         }
 
-        for (int i = k; i < nums.length; i++) {
-            nums[i] = 0;
+        for (int j = i; j < nums.length; j++) {
+            nums[j] = 0;
         }
 
-        return k;
+        return i+1;
     }
 
     public static int executeUsingStream(int[] nums) {
