@@ -42,7 +42,7 @@ public class RemoveElement {
 
     public static int execute(int[] nums, int val) {
 
-        int i = 0
+        int i = 0;
         for (int j = 0; j < nums.length; j++) {
             if (nums[j] == val) {
                 nums[j] = 0;
