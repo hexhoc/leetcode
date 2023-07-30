@@ -1,4 +1,4 @@
-package top_liked;
+package top_liked.easy;
 
 /**
  * 14. Longest Common Prefix

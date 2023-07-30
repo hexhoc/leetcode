@@ -1,4 +1,4 @@
-package top_liked;
+package top_liked.easy;
 
 import java.util.Arrays;
 import java.util.HashMap;
