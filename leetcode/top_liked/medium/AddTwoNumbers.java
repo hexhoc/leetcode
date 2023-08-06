@@ -2,6 +2,8 @@ package top_liked.medium;
 
 import java.math.BigInteger;
 
+import top_liked.medium.additional.ListNode;
+
 public class AddTwoNumbers {
     public static void main(String[] args) {
         // var l1 = new ListNode(2);
@@ -72,20 +74,4 @@ public class AddTwoNumbers {
         return resultNode;
     }
 
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 }
