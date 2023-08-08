@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import top_liked.medium.additional.ListNode;
+import top_liked.util.ListNode;
 
 /**
  * 19. Remove Nth Node From End of List

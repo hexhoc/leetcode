@@ -1,8 +1,6 @@
 package top_liked.medium;
 
-import java.math.BigInteger;
-
-import top_liked.medium.additional.ListNode;
+import top_liked.util.ListNode;
 
 public class AddTwoNumbers {
     public static void main(String[] args) {

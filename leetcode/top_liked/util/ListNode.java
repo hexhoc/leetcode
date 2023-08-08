@@ -1,4 +1,4 @@
-package top_liked.medium.additional;
+package top_liked.util;
 
 public class ListNode {
     public int val;
