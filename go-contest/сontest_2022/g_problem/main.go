@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"sort"
 	"strconv"
@@ -11,57 +10,31 @@ import (
 )
 
 func main() {
-	for x := 1; x <= 25; x++ {
-		testNum := ""
-		if x < 10 {
-			testNum = "0" + strconv.Itoa(x)
-		} else {
-			testNum = strconv.Itoa(x)
-		}
 
-		// Open the file
-		file, err := os.Open("tests/" + testNum)
-		if err != nil {
-			fmt.Println("Error opening file:", err)
-			return
-		}
-		defer file.Close()
+	var result strings.Builder
 
-		scanner := bufio.NewScanner(file)
-		scanner.Buffer(make([]byte, 512*1024), 512*1024)
-		//scanner := bufio.NewScanner(os.Stdin)
-		//scanner.Split(bufio.ScanLines)
+	reader := bufio.NewReader(os.Stdin)
 
-		scanner.Scan()
-		nums := strings.Split(scanner.Text(), " ")
-		totalUsers, _ := strconv.Atoi(nums[0])
-		totalPairs, _ := strconv.Atoi(nums[1])
-		pairArr := make([]string, totalPairs)
-		for j := 0; j < totalPairs; j++ {
-			scanner.Scan()
-			dataStr := scanner.Text()
-			pairArr[j] = dataStr
-		}
-
-		str := getPossibleFriends(totalUsers, pairArr)
-		output := str
-		//output = output[:len(output)-2]
-		//fmt.Println(str)
-
-		answerFile, err := os.Open("tests/" + testNum + ".a")
-		if err != nil {
-			fmt.Println("Error opening file:", err)
-			return
-		}
-		defer answerFile.Close()
-		answerStr, err := ioutil.ReadAll(answerFile)
-
-		if string(answerStr) == output {
-			fmt.Println(testNum + " OK")
-		} else {
-			fmt.Println(testNum + " NOT OK")
-		}
+	nums := strings.Split(readLine(reader), " ")
+	totalUsers, _ := strconv.Atoi(nums[0])
+	totalPairs, _ := strconv.Atoi(nums[1])
+	pairArr := make([]string, totalPairs)
+	for j := 0; j < totalPairs; j++ {
+		dataStr := readLine(reader)
+		pairArr[j] = dataStr
 	}
+
+	str := getPossibleFriends(totalUsers, pairArr)
+	result.WriteString(fmt.Sprintf("%s\r\n", str))
+
+	output := result.String()
+	fmt.Println(output)
+}
+
+func readLine(reader *bufio.Reader) string {
+	line, _ := reader.ReadString('\n')
+	line = strings.TrimRight(line, " \t\r\n")
+	return line
 }
 
 func getPossibleFriends(totalUsers int, pairArr []string) string {
