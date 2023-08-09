@@ -2,112 +2,75 @@ package main
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
-	"io/ioutil"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
-	"time"
 )
 
 func main() {
-	for x := 1; x <= 35; x++ {
-		testNum := ""
-		if x < 10 {
-			testNum = "0" + strconv.Itoa(x)
-		} else {
-			testNum = strconv.Itoa(x)
+
+	var result strings.Builder
+
+	reader := bufio.NewReader(os.Stdin)
+
+	line := readLine(reader)
+	totalDataSet, _ := strconv.Atoi(line)
+
+	for i := 0; i < totalDataSet; i++ {
+		length, _ := strconv.Atoi(readLine(reader))
+		workLog := make([]string, length)
+		for i := 0; i < length; i++ {
+			workLog[i] = readLine(reader)
 		}
-
-		// Open the file
-		file, err := os.Open("tests/" + testNum)
-		if err != nil {
-			fmt.Println("Error opening file:", err)
-			return
-		}
-		defer file.Close()
-
-		var result strings.Builder
-
-		scanner := bufio.NewScanner(file)
-		scanner.Buffer(make([]byte, 512*1024), 512*1024)
-		//scanner := bufio.NewScanner(os.Stdin)
-		//scanner.Split(bufio.ScanLines)
-
-		scanner.Scan()
-		num, _ := strconv.Atoi(scanner.Text())
-
-		for i := 0; i < num; i++ {
-			scanner.Scan()
-			size, _ := strconv.Atoi(scanner.Text())
-			intervals := make([]string, size)
-
-			for j := 0; j < size; j++ {
-				scanner.Scan()
-				dataStr := scanner.Text()
-				intervals[j] = dataStr
-			}
-
-			str := isTimeCorrect(intervals)
-			result.WriteString(fmt.Sprintf("%s\r\n", str))
-		}
-
-		output := result.String()
-		//output = output[:len(output)-2]
-		//fmt.Println(output)
-
-		answerFile, err := os.Open("tests/" + testNum + ".a")
-		if err != nil {
-			fmt.Println("Error opening file:", err)
-			return
-		}
-		defer answerFile.Close()
-		answerStr, err := ioutil.ReadAll(answerFile)
-
-		if string(answerStr) == output {
-			fmt.Println(testNum + " OK")
-		} else {
-			fmt.Println(testNum + " NOT OK")
-		}
+		str := checkTimeSegment(workLog)
+		result.WriteString(fmt.Sprintf("%s\r\n", str))
 	}
+
+	output := result.String()
+	output = output[:len(output)-2]
+	fmt.Println(output)
 }
 
-func isTimeCorrect(intervals []string) string {
+func readLine(reader *bufio.Reader) string {
+	line, _ := reader.ReadString('\n')
+	line = strings.TrimRight(line, " \t\r\n")
+	return line
+}
 
-	result := "YES"
-	parseTimeForm := "15:04:05"
-	check := make([]bool, 86400)
+func checkTimeSegment(arr []string) string {
 
-	for i := 0; i < len(intervals); i++ {
-		times := strings.Split(intervals[i], "-")
-		t1, err := time.Parse(parseTimeForm, times[0])
+	sort.Strings(arr)
+	endLastWork := -1
+
+	for _, v := range arr {
+		timeRange := strings.Split(v, "-")
+		start, err := convertTimeFromStrToInt(strings.Split(timeRange[0], ":"))
 		if err != nil {
-			result = "NO"
-			break
+			return "NO"
 		}
-
-		t2, err := time.Parse(parseTimeForm, times[1])
+		end, err := convertTimeFromStrToInt(strings.Split(timeRange[1], ":"))
 		if err != nil {
-			result = "NO"
-			break
+			return "NO"
+		}
+		if start > end || start <= endLastWork {
+			return "NO"
 		}
 
-		t1Second := t1.Hour()*60*60 + t1.Minute()*60 + t1.Second()
-		t2Second := t2.Hour()*60*60 + t2.Minute()*60 + t2.Second()
+		endLastWork = end
+	}
+	return "YES"
+}
 
-		if t1Second > t2Second {
-			result = "NO"
-			break
-		}
-
-		for second := t1Second; second <= t2Second; second++ {
-			if check[second] == true {
-				result = "NO"
-				break
-			}
-			check[second] = true
-		}
+func convertTimeFromStrToInt(timeArr []string) (int, error) {
+	hour, _ := strconv.Atoi(timeArr[0])
+	minute, _ := strconv.Atoi(timeArr[1])
+	seconds, _ := strconv.Atoi(timeArr[2])
+	if hour > 23 || minute > 59 || seconds > 59 {
+		return 0, errors.New("Not valid time")
 	}
 
-	return result
+	return hour*3600 + minute*60 + seconds, nil
 }
