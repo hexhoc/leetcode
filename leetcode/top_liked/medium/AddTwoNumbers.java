@@ -1,6 +1,6 @@
 package top_liked.medium;
 
-import top_liked.util.ListNode;
+import util.ListNode;
 
 public class AddTwoNumbers {
     public static void main(String[] args) {

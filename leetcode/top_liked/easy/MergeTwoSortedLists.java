@@ -2,7 +2,7 @@ package top_liked.easy;
 
 import java.util.Objects;
 
-import top_liked.util.ListNode;
+import util.ListNode;
 
 /**
  * 21. Merge Two Sorted Lists
