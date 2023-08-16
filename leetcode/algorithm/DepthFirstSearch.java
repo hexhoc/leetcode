@@ -31,6 +31,7 @@ public class DepthFirstSearch {
         graph3.addEdge(graph6);
 
         DFS(graph1);
+        DFSRecursive(graph1, new HashSet<Graph>());
     }
 
     public static void DFS(Graph root) {
@@ -49,6 +50,15 @@ public class DepthFirstSearch {
             }
 
             System.out.print(graph.val + " ");
+        }
+    }
+
+    public static void DFSRecursive(Graph graph, Set<Graph> visited) {
+        System.out.print(graph.val + " ");
+        visited.add(graph);
+        var edges = graph.edges;
+        for (Graph edge : edges) {
+            DFSRecursive(edge, visited);
         }
     }
 
