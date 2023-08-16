@@ -8,6 +8,8 @@ import util.TreeNode;
 
 /**
  * 94. Binary Tree Inorder Traversal
+ * #Binary tree
+ * #Graph traversal
  */
 public class BinaryTreeInorderTraversal {
 
