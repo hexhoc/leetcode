@@ -7,7 +7,7 @@ public class QuickSort {
     public static void main(String[] args) {
         var arr = new int[]{3,6,2,1,4,5};
         quickSort(arr);
-        System.out.println(arr);
+        System.out.println(Arrays.toString(arr));
     }
 
     public static void quickSort(int[] arr) {
