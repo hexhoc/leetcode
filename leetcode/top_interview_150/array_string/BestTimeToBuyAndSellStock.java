@@ -2,7 +2,7 @@ package top_interview_150.array_string;
 
 /*
 121. Best Time to Buy and Sell Stock
-#array find value
+Easy
  */
 public class BestTimeToBuyAndSellStock {
 
