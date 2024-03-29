@@ -1,9 +1,10 @@
 package arrays.conclusion;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /*
 EASY
@@ -24,20 +25,22 @@ Output: [2]
 public class _448_Find_All_Numbers_Disappeared_in_an_Array {
 
     public static void main(String[] args) {
-        _448_Find_All_Numbers_Disappeared_in_an_Array.execute(new int[]{1,1});
-        _448_Find_All_Numbers_Disappeared_in_an_Array.execute(new int[]{4,3,2,7,8,2,3,1});
-        _448_Find_All_Numbers_Disappeared_in_an_Array.execute(new int[]{2,2});
+        var s = new _448_Find_All_Numbers_Disappeared_in_an_Array();
+        var result1 = s.execute(new int[]{1,1});
+        var result2 = s.execute(new int[]{4,3,2,7,8,2,3,1});
+        var result3 = s.execute(new int[]{2,2});
+        System.out.println(result1.equals(List.of(2)));
+        System.out.println(result2.equals(List.of(5,6)));
+        System.out.println(result3.equals(List.of(1)));
     }
 
-    public static List<Integer> execute(int[] nums) {
-        var numsSet = Arrays.stream(nums).boxed().collect(Collectors.toSet());
-        var result = new ArrayList<Integer>();
-        for (int i = 1; i <= nums.length; i++) {
-            if (!numsSet.contains(i)) {
-                result.add(i);
-            }
+    public List<Integer> execute(int[] nums) {
+        var set = IntStream.range(1, nums.length + 1).boxed().collect(Collectors.toSet());
+        for (int num : nums) {
+            set.remove(num);
         }
-        return result;
+
+        return set.stream().toList();
     }
 
 }
