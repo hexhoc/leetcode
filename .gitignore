@@ -2,6 +2,7 @@
 .gradle
 .vscode
 .idea
+.obsidian
 
 # Ignore Gradle build output directory
 build
