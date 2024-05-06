@@ -1,40 +1,42 @@
 package problems.arrays.conclusion;
 
+import static util.Assertions.assertEquals;
+
 import java.util.*;
-import java.util.stream.IntStream;
 
 public class _414_Third_Maximum_Number {
 
     public static void main(String[] args) {
         var s = new _414_Third_Maximum_Number();
-        Integer result;
-        result = s.thirdMax(new int[] { 1,2,3});
-        System.out.println(result);
-        result = s.thirdMax(new int[] { 1,2 });
-        System.out.println(result);
-        result = s.thirdMax(new int[] { 2,2,3,1 });
-        System.out.println(result);
-        result = s.thirdMax(new int[] { 5, 5, 6 });
-        System.out.println(result);
+
+        assertEquals(1, s.execute(new int[] { 1,2,3 }));
+        assertEquals(2, s.execute(new int[] { 1,2 }));
+        assertEquals(1, s.execute(new int[] { 2,2,3,1 }));
+        assertEquals(6, s.execute(new int[] { 5,5,6 }));
     }
 
-    public int thirdMax_stream(int[] nums) {
-        var sortedList = IntStream.of(nums)
-            .boxed()
-            .distinct()
-            .sorted()
-            .toList();
-        return sortedList.get(Math.max(sortedList.size()-3, 0));
-    }
-
-    public int thirdMax(int[] nums) {
-        HashSet<Integer> set = new HashSet<>();
-        for (int num : nums) {
-            set.add(num);
+    public int execute(int[] nums) {
+        Arrays.sort(nums);
+        int count = 1;
+        for (int i = nums.length - 2; i >= 0; i--) {
+            if (nums[i] != nums[i+1]) {
+                count++;
+            }
+            if (count == 3) {
+                return nums[i];
+            }
         }
 
-        var sortedArr = set.toArray(Integer[]::new);
-        return sortedArr[Math.max(sortedArr.length-3, 0)];
+        return nums[nums.length - 1];
     }
 
+    public int executeStream(int[] nums) {
+        var list = Arrays.stream(nums)
+            .boxed()
+            .distinct()
+            .sorted(Comparator.reverseOrder())
+            .limit(3)
+            .toList();
+        return list.size() < 3 ? list.get(0) : list.get(2);
+    }
 }
