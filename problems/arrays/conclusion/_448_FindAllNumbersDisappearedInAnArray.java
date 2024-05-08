@@ -7,10 +7,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class _448_Find_All_Numbers_Disappeared_in_an_Array {
+public class _448_FindAllNumbersDisappearedInAnArray {
 
     public static void main(String[] args) {
-        var s = new _448_Find_All_Numbers_Disappeared_in_an_Array();
+        var s = new _448_FindAllNumbersDisappearedInAnArray();
 
         assertEquals(List.of(2), s.execute(new int[]{1, 1}));
         assertEquals(List.of(5, 6), s.execute(new int[]{4, 3, 2, 7, 8, 2, 3, 1}));

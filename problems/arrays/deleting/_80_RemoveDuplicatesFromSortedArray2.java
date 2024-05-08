@@ -2,14 +2,14 @@ package problems.arrays.deleting;
 
 import static util.Assertions.assertEquals;
 
-public class _80_Remove_Duplicates_From_Sorted_Array_2 {
+public class _80_RemoveDuplicatesFromSortedArray2 {
     public static void main(String[] args) {
         int[] arr1 = new int[]{0, 0, 1, 1, 1, 1, 2, 3, 3};
         int[] arr2 = new int[]{1, 1, 2};
         int[] arr3 = new int[]{1, 1, 1, 2, 2, 3};
         int[] arr4 = new int[]{0, 1, 2, 2, 3, 3, 4, 4, 4};
 
-        var s = new _80_Remove_Duplicates_From_Sorted_Array_2();
+        var s = new _80_RemoveDuplicatesFromSortedArray2();
         var k1= s.removeDuplicates(arr1);
         var k2= s.removeDuplicates(arr2);
         var k3= s.removeDuplicates(arr3);

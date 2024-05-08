@@ -2,13 +2,13 @@ package problems.arrays.deleting;
 
 import static util.Assertions.assertEquals;
 
-public class _27_Remove_Element {
+public class _27_RemoveElement {
 
     public static void main(String[] args) {
         int[] arr1 = new int[] {3, 2, 2, 3};
         int[] arr2 = new int[] {0, 1, 2, 2, 3, 0, 4, 2};
 
-        var s = new _27_Remove_Element();
+        var s = new _27_RemoveElement();
         var k1 = s.executeVer1(arr1, 3);
         var k2 = s.executeVer1(arr2, 2);
 

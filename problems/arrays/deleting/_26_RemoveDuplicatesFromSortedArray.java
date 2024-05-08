@@ -1,13 +1,13 @@
 package problems.arrays.deleting;
 
-public class _26_remove_duplicates_from_sorted_array {
+public class _26_RemoveDuplicatesFromSortedArray {
     public static void main(String[] args) {
         int[] arr1 = new int[]{0,0,1,1,1,2,2,3,3,4};
         int[] arr2 = new int[]{1,1,2};
         int[] arr3 = new int[]{1};
         int[] arr4 = new int[]{0,1,2,2,3,3,4,4,4};
 
-        var s = new _26_remove_duplicates_from_sorted_array();
+        var s = new _26_RemoveDuplicatesFromSortedArray();
         var k1 = s.execute(arr1);
         var k2 = s.execute(arr2);
         var k3 = s.execute(arr3);

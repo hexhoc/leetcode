@@ -21,10 +21,10 @@ Explanation:
 - index 5 --> there are no elements to the right of index 5, so we put -1.
 */
 
-public class _1299_Replace_Elements_With_Greatest_Element_On_Right_Side {
+public class _1299_ReplaceElementsWithGreatestElementOnRightSide {
     public static void main(String[] args) {
         int[] nums = new int[]{17,18,5,4,6,1};
-        _1299_Replace_Elements_With_Greatest_Element_On_Right_Side.execute(nums);
+        _1299_ReplaceElementsWithGreatestElementOnRightSide.execute(nums);
     }
 
     public static int[] execute(int[] nums) {

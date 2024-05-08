@@ -25,9 +25,9 @@ Output: [0]
 // Given an integer array nums, move all the even integers at the beginning of the array followed by all the odd integers.
 // Return any array that satisfies this condition.
 
-public class _905_Sort_Array_By_Parity {
+public class _905_SortArrayByParity {
     public static void main(String[] args) {
-        int[] nums = _905_Sort_Array_By_Parity.execute(new int[]{3,1,2,4});
+        int[] nums = _905_SortArrayByParity.execute(new int[]{3,1,2,4});
         System.out.println(Arrays.toString(nums));
 
     }

@@ -4,10 +4,10 @@ import static util.Assertions.assertEquals;
 
 import java.util.*;
 
-public class _414_Third_Maximum_Number {
+public class _414_ThirdMaximumNumber {
 
     public static void main(String[] args) {
-        var s = new _414_Third_Maximum_Number();
+        var s = new _414_ThirdMaximumNumber();
 
         assertEquals(1, s.execute(new int[] { 1,2,3 }));
         assertEquals(2, s.execute(new int[] { 1,2 }));
