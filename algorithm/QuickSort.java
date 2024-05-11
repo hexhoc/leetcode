@@ -3,34 +3,42 @@ package algorithm;
 import java.util.Arrays;
 
 public class QuickSort {
-
+    // Algorithm:
+    // 1. Get all range from 0 to 5, get pivot value at arr[5]
+    // 2. Using two pointer iteration, Those that are less than pivot are placed on the left
     public static void main(String[] args) {
-        var arr = new int[]{3,6,2,1,4,5};
-        quickSort(arr);
+        var arr = new int[]{20, 50, 40, 30, 60, 10};
+        quickSort(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
     }
 
-    public static void quickSort(int[] arr) {
-        if (arr.length <= 1) {
-            return;
+    public static void quickSort(int arr[], int begin, int end) {
+        if (begin < end) {
+            int partitionIndex = partition(arr, begin, end);
+
+            quickSort(arr, begin, partitionIndex-1);
+            quickSort(arr, partitionIndex+1, end);
         }
-        int begin = 0;
-        int end = arr.length-1;
-        int mid = begin + (end - begin) / 2;
-        int[] leftArr = Arrays.stream(arr).filter(value -> value < arr[mid]).toArray();
-        int[] rightArr = Arrays.stream(arr).filter(value -> value > arr[mid]).toArray();
-
-        quickSort(leftArr);
-        quickSort(rightArr);
-
-        // Выполняем конкатенацию в исходный массив: leftArr + mid + rightArr
-        // Устанавливаем среднее значение после левой части
-        arr[leftArr.length] = arr[mid];
-        // Затем устанавливае левую часть
-        System.arraycopy(leftArr,0, arr, 0, leftArr.length);
-        // Устанавливаем правую часть
-        System.arraycopy(rightArr,0, arr, leftArr.length+1, rightArr.length);
-
     }
 
+    private static int partition(int arr[], int begin, int end) {
+        int pivot = arr[end];
+        int k = (begin-1);
+
+        for (int i = begin; i < end; i++) {
+            if (arr[i] <= pivot) {
+                k++;
+
+                int swapTemp = arr[k];
+                arr[k] = arr[i];
+                arr[i] = swapTemp;
+            }
+        }
+
+        int swapTemp = arr[k+1];
+        arr[k+1] = arr[end];
+        arr[end] = swapTemp;
+
+        return k+1;
+    }
 }
