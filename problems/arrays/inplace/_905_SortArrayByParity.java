@@ -1,66 +1,25 @@
 package problems.arrays.inplace;
 
-import java.util.Arrays;
-
-/*
-Given an integer array nums, move all the even integers at the beginning of the array followed by all 
-the odd integers.
-
-Return any array that satisfies this condition.
-
- 
-
-Example 1:
-
-Input: nums = [3,1,2,4]
-Output: [2,4,3,1]
-Explanation: The outputs [4,2,3,1], [2,4,1,3], and [4,2,1,3] would also be accepted.
-
-Example 2:
-
-Input: nums = [0]
-Output: [0]
-*/
-
-// Given an integer array nums, move all the even integers at the beginning of the array followed by all the odd integers.
-// Return any array that satisfies this condition.
+import static util.Assertions.assertEquals;
 
 public class _905_SortArrayByParity {
     public static void main(String[] args) {
-        int[] nums = _905_SortArrayByParity.execute(new int[]{3,1,2,4});
-        System.out.println(Arrays.toString(nums));
-
+        var s = new _905_SortArrayByParity();
+        int[] nums = s.execute(new int[]{3,1,2,4});
+        assertEquals(new int[]{2,4,3,1}, nums);
     }
 
     public static int[] execute(int[] nums) {
-        return executeQuickSort(nums);
-    }
-
-    public static int[] executeBubbleSort(int[] nums) {
-        boolean doSort = true;
-
-        while(doSort) {
-            doSort = false;
-            for (int i = 1; i < nums.length; i++) {
-                if (nums[i-1] % 2 != 0 && nums[i] % 2 == 0) {
-                    int temp = nums[i-1];
-                    nums[i-1] = nums[i];
-                    nums[i] = temp;
-                    doSort = true;
-                }
+        int k = -1;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] % 2 == 0) {
+                k++;
+                var temp = nums[i];
+                nums[i] = nums[k];
+                nums[k] = temp;
             }
         }
 
         return nums;
     }
-
-    public static int[] executeQuickSort(int[] nums) {
-        return Arrays.stream(nums)
-        .boxed()
-        .sorted((a, b) -> Integer.compare(a%2, b%2))
-        .mapToInt(i->i)
-        .toArray();
-    }
-
-
 }
