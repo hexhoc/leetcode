@@ -1,38 +1,43 @@
 package problems.arrays;
 
+import static util.Assertions.assertEquals;
+
 import java.util.Map;
 
 /**
  * 13. Roman to Integer
+ * Easy
  */
 public class _13_RomanToInteger {
     public static void main(String[] args) {
-        var result = romanToInt("XXIX");
-        System.out.println(result);
+        var s = new _13_RomanToInteger();
+        assertEquals(3, s.execute("III"));
+        assertEquals(58, s.execute("LVIII"));
+        assertEquals(1994, s.execute("MCMXCIV"));
     }
 
-    public static int romanToInt(String s) {
-        var result = 0;
-        var romanMap = Map.of(
-                'I', 1,
-                'V', 5,
-                'X', 10,
-                'L', 50,
-                'C', 100,
-                'D', 500,
-                'M', 1000);
+    public int execute(String s) {
+        int result = 0;
+        Map<Character, Integer> map = Map.of(
+            'I', 1,
+            'V', 5,
+            'X', 10,
+            'L', 50,
+            'C', 100,
+            'D', 500,
+            'M', 1000);
 
-        result += romanMap.get(s.charAt(0));
-        for (int i = 1; i < s.length(); i++) {
-            if (romanMap.get(s.charAt(i - 1)) >= romanMap.get(s.charAt(i))) {
-                result += romanMap.get(s.charAt(i));
+        var chars = s.toCharArray();
+        int prevValue = Integer.MIN_VALUE;
+        for (int i = chars.length-1; i >= 0; i--) {
+            int curValue = map.get(chars[i]);
+            if (curValue < prevValue) {
+                result = result - curValue;
             } else {
-                result -= romanMap.get(s.charAt(i - 1));
-                result += romanMap.get(s.charAt(i)) - romanMap.get(s.charAt(i - 1));
+                result = result + curValue;
             }
+            prevValue = curValue;
         }
-
         return result;
     }
-
 }

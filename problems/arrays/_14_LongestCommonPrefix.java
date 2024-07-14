@@ -1,37 +1,37 @@
 package problems.arrays;
 
+import static util.Assertions.assertEquals;
+
+import java.util.Arrays;
+
 /**
  * 14. Longest Common Prefix
+ * easy
+ * rating: 1
  */
 public class _14_LongestCommonPrefix {
 
     public static void main(String[] args) {
-        var result = longestCommonPrefix(new String[] { "ab", "a" });
-        System.out.println(result);
+        var s = new _14_LongestCommonPrefix();
+        assertEquals("a", s.execute(new String[] { "ab", "a" }));
+        assertEquals("fl", s.execute(new String[] { "flower","flow","flight" }));
+        assertEquals("fl", s.execute(new String[] { "flower","flight","flow" }));
+        assertEquals("", s.execute(new String[] { "dog","racecar","car" }));
+        assertEquals("ab", s.execute(new String[] { "abab","abc","aba" }));
     }
 
-    public static String longestCommonPrefix(String[] strs) {
-        var result = "";
-        boolean maxPrefixFound = false;
-        int prefixLength = 1;
-
-        while (!maxPrefixFound) {
-            if (prefixLength > strs[0].length()) {
+    public String execute(String[] strs) {
+        Arrays.sort(strs, String::compareTo);
+        String s1 = strs[0];
+        String s2 = strs[strs.length-1];
+        int lastIndex = 0;
+        for (int i = 0; i < s1.length(); i++) {
+            if (s1.charAt(i) != s2.charAt(i)) {
                 break;
             }
-            var prefix = strs[0].substring(0, prefixLength);
-            for (int i = 1; i < strs.length; i++) {
-                if (prefixLength > strs[i].length()
-                        || !prefix.equals(strs[i].substring(0, prefixLength))) {
-                    maxPrefixFound = true;
-                    break;
-                }
-            }
-            if (!maxPrefixFound) {
-                result = prefix;
-            }
-            prefixLength++;
+            lastIndex = i + 1;
         }
-        return result;
+
+        return s1.substring(0, lastIndex);
     }
 }

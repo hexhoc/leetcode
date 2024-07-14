@@ -2,7 +2,8 @@ package problems.arrays.conclusion;
 
 import static util.Assertions.assertEquals;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class _414_ThirdMaximumNumber {
 

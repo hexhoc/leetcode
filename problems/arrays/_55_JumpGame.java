@@ -1,55 +1,46 @@
 package problems.arrays;
 
-import java.util.HashSet;
-import java.util.Set;
+import static util.Assertions.assertEquals;
 
 /*
 55. Jump Game
 Medium
+rating: 1
  */
 public class _55_JumpGame {
 
     public static void main(String[] args) {
         var s = new _55_JumpGame();
-        System.out.println(s.canJump(new int[]{2,5,0,0}));
-        System.out.println(s.canJump(new int[]{0}));
-        System.out.println(s.canJump(new int[]{2,3,1,1,4}));
-        System.out.println(s.canJump(new int[]{3,2,1,0,4}));
+        assertEquals(true, s.execute(new int[]{2,3,1,1,4}));
+        assertEquals(false, s.execute(new int[]{3,2,1,0,4}));
+        assertEquals(true, s.execute(new int[]{2,5,0,0}));
+        assertEquals(true, s.execute(new int[]{0}));
+        assertEquals(true, s.execute(new int[]{4,2,0,0,1,1,4,4,4,0,4,0}));
+        assertEquals(true, s.execute(new int[]{5,9,3,2,1,0,2,3,3,1,0,0}));
     }
 
-    public boolean canJump(int[] nums) {
-        int reachable = 0;
-        for(int i = 0; i < nums.length; i ++) {
-            if(i > reachable) return false;
-            reachable = Math.max(reachable, i + nums[i]);
+    public boolean execute(int[] nums) {
+        int jumpCounter = 0;
+        for (int num : nums) {
+            if (jumpCounter < 0)
+                return false;
+
+            if (num > jumpCounter) {
+                jumpCounter = num;
+            }
+            jumpCounter--;
         }
         return true;
+//        int j = nums[0];
+//        for (int i = 1; i < nums.length; i++) {
+//            if (j < i) {
+//                return false;
+//            }
+//
+//            if ((i + nums[i]) > j) {
+//                j = i + nums[i];
+//            }
+//        }
+//        return true;
     }
-
-    public boolean canJumpRecurse(int[] nums) {
-        if (nums.length == 1) {
-            return true;
-        }
-        return checkPath(nums, 0, new HashSet<>());
-    }
-
-    public boolean checkPath(int[] nums, int i, Set<Integer> visited) {
-        visited.add(i);
-
-        var jumpLength = nums[i];
-        for (int k = jumpLength; k > 0; k--) {
-            int nextIndex = i + k;
-            if (nextIndex >= nums.length-1) {
-                return true;
-            }
-            if (!visited.contains(nextIndex)) {
-                if (checkPath(nums, nextIndex, visited)) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
 }

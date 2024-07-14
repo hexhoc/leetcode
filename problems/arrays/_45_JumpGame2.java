@@ -1,5 +1,7 @@
 package problems.arrays;
 
+import static util.Assertions.assertEquals;
+
 /*
 45. Jump Game II
 Medium
@@ -8,46 +10,36 @@ public class _45_JumpGame2 {
 
     public static void main(String[] args) {
         var s = new _45_JumpGame2();
-        System.out.println(s.jump(new int[]{3,2,1,0,4}));
-        System.out.println(s.jump(new int[]{9,7,9,4,8,1,6,1,5,6,2,1,7,9,0}));
-        System.out.println(s.jump(new int[]{1,2,3}));
-        System.out.println(s.jump(new int[]{2,1}));
-        System.out.println(s.jump(new int[]{1,1,1,1}));
-        System.out.println(s.jump(new int[]{7,0,9,6,9,6,1,7,9,0,1,2,9,0,3}));
-        System.out.println(s.jump(new int[]{2,3,0,1,4}));
-        System.out.println(s.jump(new int[]{2,5,0,0}));
-        System.out.println(s.jump(new int[]{0}));
+        assertEquals(1, s.execute(new int[]{1,2}));
+        assertEquals(0, s.execute(new int[]{3,2,1,0,4}));
+        assertEquals(2, s.execute(new int[]{2,3,1,1,4}));
+        assertEquals(2, s.execute(new int[]{2,5,0,0}));
+        assertEquals(1, s.execute(new int[]{3,2,1}));
+        assertEquals(0, s.execute(new int[]{0}));
+        assertEquals(0, s.execute(new int[]{0,1}));
+        assertEquals(5, s.execute(new int[]{4,2,0,0,1,1,4,4,4,0,4,0}));
+        assertEquals(3, s.execute(new int[]{5,9,3,2,1,0,2,3,3,1,0,0}));
+
     }
 
-    public int jump(int[] nums) {
-
-        int position = 0;
-        int maxPosition = Math.min(position + nums[position], nums.length-1);
-        int jump = 0;
-
-        while (maxPosition > 0) {
-            int newMaxPosition = 0;
-            if (maxPosition < nums.length-1) {
-                // find new max position
-                for (int i = position + 1; i <= maxPosition; i++) {
-                    if (i + nums[i] > newMaxPosition) {
-                        position = i;
-                        newMaxPosition = Math.min(i + nums[i], nums.length - 1);
-                    }
+    public int execute(int[] nums) {
+        int totalJump = 0;
+        int maxPosition = 0;
+        int newPosition = 0;
+        for (int i = 0; i < nums.length-1; i++) {
+            // find new max position
+            maxPosition = Math.max(maxPosition, nums[i] + i);
+            if (i == newPosition) {
+                // we cannot jump anywhere
+                if (maxPosition == newPosition) {
+                    return 0;
                 }
+                // set new max position and jump
+                newPosition = maxPosition;
+                totalJump++;
             }
-            // jump to new position
-            if (newMaxPosition == 0 && maxPosition < nums.length-1) {
-                jump = 0;
-            } else {
-                jump++;
-            }
-
-            maxPosition = newMaxPosition;
-
         }
-        
-        return jump;
-    }
 
+        return totalJump;
+    }
 }
