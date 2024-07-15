@@ -5,7 +5,7 @@ import static util.Assertions.assertEquals;
 /*
 55. Jump Game
 Medium
-rating: 1
+MUST LEARN
  */
 public class _55_JumpGame {
 

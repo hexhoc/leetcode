@@ -7,7 +7,7 @@ import java.util.Arrays;
 /**
  * 14. Longest Common Prefix
  * easy
- * rating: 1
+ * MUST LEARN
  */
 public class _14_LongestCommonPrefix {
 
