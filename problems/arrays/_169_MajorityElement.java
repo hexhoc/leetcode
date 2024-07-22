@@ -1,7 +1,8 @@
 package problems.arrays;
 
-import java.util.HashMap;
-import java.util.Map;
+import static util.Assertions.assertEquals;
+
+import java.util.Arrays;
 
 /*
 169. Majority Element
@@ -11,27 +12,13 @@ public class _169_MajorityElement {
 
     public static void main(String[] args) {
         var s = new _169_MajorityElement();
-        System.out.println(s.majorityElement(new int[]{1,1,1,1}));
-        System.out.println(s.majorityElement(new int[]{6,5,5}));
-        System.out.println(s.majorityElement(new int[]{2,2,1,1,1,2,2}));
+        assertEquals(2, s.execute(new int[]{2,2,1,1,1,2,2}));
+        assertEquals(1, s.execute(new int[]{1,1,1,1}));
+        assertEquals(5, s.execute(new int[]{6,5,5}));
     }
 
-    public int majorityElement(int[] nums) {
-        Map<Integer, Integer> mapCounter = new HashMap<>();
-        int maxNumber = -1;
-        int maxCount = -1;
-        for (int i = 0; i < nums.length; i++) {
-            if (!mapCounter.containsKey(nums[i])) {
-                mapCounter.put(nums[i], 0);
-            }
-            var counter = mapCounter.get(nums[i]) + 1;
-            mapCounter.put(nums[i], counter);
-            if (counter > maxCount) {
-                maxCount = counter;
-                maxNumber = nums[i];
-            }
-        }
-
-        return maxNumber;
+    public int execute(int[] nums) {
+        Arrays.sort(nums);
+        return nums[nums.length / 2];
     }
 }

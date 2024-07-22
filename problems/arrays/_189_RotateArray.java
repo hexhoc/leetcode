@@ -1,6 +1,6 @@
 package problems.arrays;
 
-import java.util.Arrays;
+import static util.Assertions.assertEquals;
 
 /*
 189. Rotate Array
@@ -10,27 +10,31 @@ public class _189_RotateArray {
 
     public static void main(String[] args) {
         var s = new _189_RotateArray();
-        var nums1= new int[]{1,2};
-        var nums2= new int[]{1,2,3,4,5,6,7};
-        s.rotate(nums1, 3);
-        s.rotate(nums2, 3);
-        System.out.println(Arrays.toString(nums1));
+        var nums1 = new int[]{1,2};
+        var nums2 = new int[]{1,2,3,4,5,6,7};
+        s.execute(nums1, 5);
+        s.execute(nums2, 3);
+
+        assertEquals(new int[]{5,6,7,1,2,3,4}, nums2);
     }
 
-    public void rotate(int[] nums, int k) {
-        if (k % nums.length == 0) {
+    public void execute(int[] nums, int k) {
+        int[] nums2 = new int[nums.length];
+        if (k > nums.length) {
+            k = k % nums.length;
+        }
+        if (k == 0) {
             return;
         }
-        int[] temp = new int[nums.length];
-        int startIndex = nums.length - k % nums.length;
-        for (int i = 0; i < temp.length; i++) {
-            if (startIndex >= nums.length) {
-                startIndex = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (i < k) {
+                nums2[i] = nums[nums.length - k + i];
+            } else {
+                nums2[i] = nums[i - k];
             }
-            temp[i] = nums[startIndex];
-            startIndex++;
         }
 
-        System.arraycopy(temp, 0, nums, 0, temp.length);
+        System.arraycopy(nums2, 0, nums, 0, nums.length);
     }
 }

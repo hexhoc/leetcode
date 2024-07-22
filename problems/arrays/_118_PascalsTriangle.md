@@ -1,6 +1,7 @@
 # 118. Pascal's Triangle
 
 Easy
+Tags: best
 
 Given an integer `numRows`, return the first numRows of **Pascal's triangle**.
 
