@@ -1,5 +1,7 @@
 package problems.arrays;
 
+import static util.Assertions.assertEquals;
+
 /*
 122. Best Time to Buy and Sell Stock II
 Medium
@@ -8,20 +10,19 @@ public class _122_BestTimeToBuyAndSellStock2 {
 
     public static void main(String[] args) {
         var s = new _122_BestTimeToBuyAndSellStock2();
-        System.out.println(s.maxProfit(new int[]{7,1,5,3,6,4})); // 7
-        System.out.println(s.maxProfit(new int[]{1,2,3,4,5}));
-        System.out.println(s.maxProfit(new int[]{7,6,4,3,1}));
+        assertEquals(3, s.execute(new int[]{2, 4, 1, 2}));
+        assertEquals(7, s.execute(new int[]{7, 1, 5, 3, 6, 4}));
+        assertEquals(0, s.execute(new int[]{7, 6, 4, 3, 1}));
     }
 
-    public int maxProfit(int[] prices) {
-        int minPrice = prices[0];
-        int totalProfit = 0;
+    public int execute(int[] prices) {
+        int maxProfit = 0;
         for (int i = 1; i < prices.length; i++) {
-            if (minPrice <= prices[i]) {
-                totalProfit = totalProfit + (prices[i] - minPrice);
+            if (prices[i] > prices[i - 1]) {
+                maxProfit = maxProfit + (prices[i] - prices[i - 1]);
             }
-            minPrice = prices[i];
         }
-        return totalProfit;
+
+        return maxProfit;
     }
 }
