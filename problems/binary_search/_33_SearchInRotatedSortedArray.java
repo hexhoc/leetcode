@@ -1,5 +1,7 @@
 package problems.binary_search;
 
+import static util.Assertions.assertEquals;
+
 /**
  * 33. Search in Rotated Sorted Array
  */
@@ -7,7 +9,12 @@ public class _33_SearchInRotatedSortedArray {
 
     public static void main(String[] args) {
         var s = new _33_SearchInRotatedSortedArray();
-        System.out.println(s.search(new int[]{1}, 1));
+        assertEquals(0, s.search(new int[]{5, 1, 3}, 5));
+        assertEquals(0, s.search(new int[]{3, 5, 1}, 3));
+        assertEquals(4, s.search(new int[]{4, 5, 6, 7, 0, 1, 2}, 0));
+        assertEquals(2, s.search(new int[]{4, 5, 6, 7, 0, 1, 2}, 6));
+        assertEquals(-1, s.search(new int[]{4, 5, 6, 7, 0, 1, 2}, 3));
+        assertEquals(-1, s.search(new int[]{1}, 0));
     }
 
     public int search(int[] nums, int target) {

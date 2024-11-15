@@ -1,5 +1,7 @@
 package problems.binary_search;
 
+import static util.Assertions.assertEquals;
+
 import java.util.Arrays;
 
 /**
@@ -9,56 +11,58 @@ public class _34_FindFirstAndLastPositionOfElementInSortedArray {
 
     public static void main(String[] args) {
         var s = new _34_FindFirstAndLastPositionOfElementInSortedArray();
-        System.out.println(Arrays.toString(s.searchRange(new int[]{5,7,7,8,8,10}, 8)));
-        System.out.println(Arrays.toString(s.searchRange(new int[]{3,3,3}, 3)));
-        System.out.println(Arrays.toString(s.searchRange(new int[]{}, 0)));
-        System.out.println(Arrays.toString(s.searchRange(new int[]{1}, 1)));
+        assertEquals(new int[]{-1, -1}, s.searchRange(new int[]{2,2}, 3));
+        assertEquals(new int[]{-1, -1}, s.searchRange(new int[]{}, 0));
+        assertEquals(new int[]{3, 4}, s.searchRange(new int[]{5, 7, 7, 8, 8, 10}, 8));
+        assertEquals(new int[]{0, 2}, s.searchRange(new int[]{3, 3, 3}, 3));
+        assertEquals(new int[]{0, 0}, s.searchRange(new int[]{1}, 1));
     }
 
     public int[] searchRange(int[] nums, int target) {
-        var result = new int[] {-1, -1};
-        var index = binarySearch(nums, target);
-        if (index >= 0) {
-            int left = index -1;
-            int right = index + 1;
-            while (result[0] < 0 || result[1] < 0) {
-                if (result[0] < 0) {
-                    if (left < 0) {
-                        result[0] = 0;
-                    } else if (nums[left] < target) {
-                        result[0] = left + 1;
-                    }
-                }
-
-                if (result[1] < 0) {
-                    if (right >= nums.length) {
-                        result[1] = nums.length - 1;
-                    } else if (nums[right] > target) {
-                        result[1] = right - 1;
-                    }
-                }
-                left--;
-                right++;
-            }
+        int i = binarySearch(nums, target);
+        if (i == -1) {
+            return new int[]{-1, -1};
         }
-        return result;
+
+        int min = i;
+        int max = i;
+        int step = 1;
+        boolean found = true;
+        while (found) {
+            found = false;
+            if (i - step >= 0 && nums[i - step] == target) {
+                min = i - step;
+                found = true;
+            }
+
+            if (i + step < nums.length && nums[i + step] == target) {
+                max = i + step;
+                found = true;
+            }
+            step++;
+        }
+
+        return new int[]{min, max};
     }
 
-    public int binarySearch(int[] nums, int target) {
-        var result = -1;
+    private int binarySearch(int[] nums, int target) {
+        if (nums.length == 0) {
+            return -1;
+        }
         int left = 0;
         int right = nums.length-1;
         while (left <= right) {
-            int mid = (left + right) / 2;
-            if (nums[mid] == target) {
-                result = mid;
-                break;
-            } else if (nums[mid] > target) {
-                right = mid - 1;
+            int pivot = left + (right - left) / 2;
+
+            if (nums[pivot] == target) {
+                return pivot;
+            } else if (nums[pivot] > target) {
+                right = pivot - 1;
             } else {
-                left = mid + 1;
+                left = pivot + 1;
             }
         }
-        return result;
+
+        return -1;
     }
 }
