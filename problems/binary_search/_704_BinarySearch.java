@@ -1,33 +1,29 @@
 package problems.binary_search;
 
+import static util.Assertions.assertEquals;
+
 public class _704_BinarySearch {
 
     public static void main(String[] args) {
         var s = new _704_BinarySearch();
-        System.out.println(s.search(new int[]{-1,0,3,5,9,12}, 13));
-        System.out.println(s.search(new int[]{1,2,3,4,5,6,7}, 1));
-        System.out.println(s.search(new int[]{-1,0,3,5,9,12}, 2));
+        assertEquals(4, s.search(new int[]{-1, 0, 3, 5, 9, 12}, 9));
+        assertEquals(-1, s.search(new int[]{-1, 0, 3, 5, 9, 12}, 2));
     }
 
     public int search(int[] nums, int target) {
-        var result = -1;
-        var left = 0;
-        var right = nums.length-1;
+        int left = 0;
+        int right = nums.length - 1;
 
-        while(left <= right) {
-            var mid = (right + left) / 2;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
             if (nums[mid] == target) {
-                result = mid;
-                break;
+                return mid;
             } else if (nums[mid] > target) {
-                mid--;
-                right = mid;
+                right = mid - 1;
             } else {
-                mid++;
-                left = mid;
+                left = mid + 1;
             }
         }
-
-        return result;
+        return -1;
     }
 }
