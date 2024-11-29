@@ -2,7 +2,7 @@ package problems.binary_tree_general;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Objects;
 import util.TreeNode;
 
 /**
@@ -20,7 +20,10 @@ public class _94_BinaryTreeInorderTraversal {
           2   3
          / \   \
         4   5   6
+
+        should return [4, 2, 5, 1, 3, 6]
         */
+
         TreeNode tree1 = new TreeNode(1);
         TreeNode tree2 = new TreeNode(2);
         TreeNode tree3 = new TreeNode(3);
