@@ -1,14 +1,15 @@
 package problems.binary_tree_general;
 
+import static util.Assertions.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import util.TreeNode;
 
 /**
  * 94. Binary Tree Inorder Traversal
- * #Binary tree
- * #Graph traversal
+ * Binary tree
+ * Graph traversal
  */
 public class _94_BinaryTreeInorderTraversal {
 
@@ -36,7 +37,7 @@ public class _94_BinaryTreeInorderTraversal {
         tree2.right = tree5;
         tree3.right = tree6;
 
-        s.inorderTraversal(tree1);
+        assertEquals(List.of(4, 2, 5, 1, 3, 6), s.inorderTraversal(tree1));
     }
 
     public List<Integer> inorderTraversal(TreeNode root) {
@@ -49,8 +50,8 @@ public class _94_BinaryTreeInorderTraversal {
         if (node == null) {
             return;
         }
-        DFS(node.left,res);
         res.add(node.val);
+        DFS(node.left, res);
         DFS(node.right, res);
     }
 }

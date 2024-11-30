@@ -1,12 +1,14 @@
 package problems.binary_tree_general;
 
+import static util.Assertions.assertEquals;
+
 import util.TreeNode;
 
 /*
 101. Symmetric Tree
-#Binary tree
-#Graph traversal
- */
+* Binary tree
+* Graph traversal
+*/
 public class _101_SymmetricTree {
 
     public static void main(String[] args) {
@@ -25,24 +27,21 @@ public class _101_SymmetricTree {
         tree2_2.right = tree3_2;
 
         var s = new _101_SymmetricTree();
-        System.out.println(s.isSymmetric(tree1));
+        assertEquals(true, s.isSymmetric(tree1));
     }
 
     public boolean isSymmetric(TreeNode root) {
-        return compareNode(root.left, root.right);
+         return recursiveCompareNode(root.left, root.right);
     }
 
-    public boolean compareNode(TreeNode leftNode, TreeNode rightNode) {
-        if (leftNode == null && rightNode == null) {
-            return true;
+    private boolean recursiveCompareNode(TreeNode node1, TreeNode node2) {
+        if (node1 == null || node2 == null) {
+            return node1 == node2;
         }
-
-        if (leftNode == null || rightNode == null
-                || leftNode.val != rightNode.val) {
-            return false;
+        if (node1.val == node2.val) {
+            return recursiveCompareNode(node1.left, node2.right)
+                && recursiveCompareNode(node1.right, node2.left);
         }
-
-        return compareNode(leftNode.left, rightNode.right)
-                && compareNode(leftNode.right, rightNode.left);
+        return false;
     }
 }
